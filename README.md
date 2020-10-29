@@ -9,6 +9,17 @@
 * Warcraft-like setting
 * Undertale-like gameplay
 
+#### Controlls:
+* Up w
+* Down s
+* Left a
+* Right d
+* Get/drop weapoon g
+* Show information k
+
+#### Compilling:
+On Windows or DOS you need install PDcurses and set compilation flag -lpdcurses
+On OSX or Linux you need set compilation flag -lncurses and maybe you need install 
 
 ##### Created by Dneprov Stepan and Zaiikin Timofey
 
