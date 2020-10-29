@@ -19,7 +19,7 @@
 
 #### Compilling:
 On Windows or DOS you need install PDcurses and set compilation flag -lpdcurses
-On OSX or Linux you need set compilation flag -lncurses and maybe you need install 
+On OSX or Linux you need set compilation flag -lncurses and maybe you need install ncurses
 
 ##### Created by Dneprov Stepan and Zaiikin Timofey
 
