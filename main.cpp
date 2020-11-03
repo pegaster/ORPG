@@ -52,7 +52,7 @@ struct character{
     }
 };
 
-character player{spawn_y, spawn_y, '!', FLOOR};
+character player{spawn_y, spawn_y, 'O', FLOOR};
 void loadMap(){
     ifstream map_file;
     map_file.open(map_name);
@@ -71,10 +71,16 @@ void setup(){
 
 void draw(){
     clear();
-    for(int y = 0; y < 22; y++){
-        for(int x = 0; x < 44; x++){
-            printw("%c" ,y == player.y && x == player.x ? player.symbol : map[y][x]);
+    for(int i = 0; i <= MAP_WIDTH + 1; i++){
+        printw("#");
+    }
+    printw("\n");
+    for(int y = 0; y < MAP_HEIGHT; y++){
+        printw("#");
+        for(int x = 0; x < MAP_WIDTH; x++){
+            printw("%c" ,y == player.y && x == player.x ? player.symbol : (map[y][x]) == FLOOR ? ' ' : map[y][x]);
         }
+        printw("#");
         switch(y){
             case 2:
                 printw("\tHealth: %d", player.hp);
@@ -92,12 +98,15 @@ void draw(){
                 break;
             case MAP_HEIGHT - 1:
                 if(showPosition){
-                    printw("\nx: %d, y: % d", player.x, player.y);
+                    printw("\t\t x: %d, y: % d", player.x, player.y);
                     printw("\t %c", player.weapoon);
                 }
                 
         }
         printw("\n");
+    }
+    for(int i = 0; i <= MAP_WIDTH + 1; i++){
+        printw("#");
     }
 }
 void input(){
