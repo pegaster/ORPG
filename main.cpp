@@ -4,12 +4,13 @@
 #define MAP_HEIGHT 22
 #define MAP_WIDTH 44
 #define FLOOR '#'
+#define DRAW_FLOOR ' '
 #define STICK 'I'
 using namespace std;
 
 char map[MAP_HEIGHT][MAP_WIDTH];
 
-string map_name("1.txt");
+string map_name("1.bin");
 bool game = true;
 short dir = 0;
 
@@ -78,7 +79,21 @@ void draw(){
     for(int y = 0; y < MAP_HEIGHT; y++){
         printw("#");
         for(int x = 0; x < MAP_WIDTH; x++){
-            printw("%c" ,y == player.y && x == player.x ? player.symbol : (map[y][x]) == FLOOR ? ' ' : map[y][x]);
+            if(y == player.y && x == player.x){
+                printw("%c", player.symbol);
+            }
+            else{
+                switch (map[y][x])
+                {
+                case FLOOR:
+                    printw("%c", DRAW_FLOOR);
+                    break;
+                
+                default:
+                    printw("%c", map[y][x]);
+                    break;
+                }
+            }
         }
         printw("#");
         switch(y){
