@@ -25,7 +25,7 @@ struct character{
     char symbol;
     char weapoon;
     int hp = 100;
-
+    bool attack = false;
     void moveX(int dir){
         x += dir;
     }
@@ -146,6 +146,8 @@ void input(){
         case 'k':
             showPosition = !showPosition;
             break;
+        case 't':
+            player.attack = true;
         case 'g':
             char buffer = player.weapoon;
             player.getWeapoon();
