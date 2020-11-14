@@ -23,7 +23,7 @@ struct character{
     int y;
     char symbol;
     char weapoon;
-    int hp = 100;
+    int hp;
 
     void moveX(int dir){
         x += dir;
@@ -52,7 +52,7 @@ struct character{
     }
 };
 
-character player{spawn_y, spawn_y, '!', FLOOR};
+struct character player = {spawn_y, spawn_x, '!', FLOOR, 100};
 void loadMap(){
     ifstream map_file;
     map_file.open(map_name);
