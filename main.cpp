@@ -1,6 +1,6 @@
 #include <curses.h>
 #include <fstream>
-
+// constants
 #define MAP_HEIGHT 22
 #define MAP_WIDTH 44
 #define LEFT_MAP 2
@@ -11,21 +11,24 @@
 #define DRAW_FLOOR ' '
 #define STICK 'I'
 using namespace std;
-
+// variables for map managment
 char map[MAP_HEIGHT][MAP_WIDTH];
 short exits = 4;
 string current_map = "1.bin";
 string maps[4] = {"1.bin"};
 bool isDirectionUsed[4];
 int map_number = 0;
+// variable for end game
 bool game = true;
+// player direction variable
 short dir = 0;
 
 bool showPosition = false;
-
+// spawn point
 int spawn_x = 0;
 int spawn_y = 0;
 
+// struct for player
 struct character{
     int x;
     int y;
@@ -63,6 +66,7 @@ struct character{
 character player = {spawn_y, spawn_y, 'O', FLOOR, 100, false};
 
 void loadMap(){
+    //getting map config info
     char exit_type;
     for(int i = 0; i < 4; i++){
         isDirectionUsed[i] = false;
@@ -96,6 +100,7 @@ void loadMap(){
         map_file >> maps[index]; 
         isDirectionUsed[index] = true;
     }
+    // getting map
     for(int y = 0; y < MAP_WIDTH - 1; y++){
         map_file >> map[y];
     }
@@ -103,6 +108,7 @@ void loadMap(){
 }
 void setup(){
     loadMap();
+// functions for curses
     initscr();
     noecho();
     halfdelay(10);
@@ -135,6 +141,7 @@ void draw(){
             }
         }
         printw("#");
+        // additional information
         switch(y){
             case 2:
                 printw("\tHealth: %d", player.hp);
@@ -164,6 +171,7 @@ void draw(){
     }
 }
 void input(){
+    // just controls
     switch (getch()){
         case 'w':
             dir = -1;
@@ -193,6 +201,7 @@ void input(){
         }
 }
 void logic(){
+    // logic of all game
     if(dir < 2){
         if(((player.y > 0) && (dir == -1)) || ((player.y < MAP_HEIGHT - 1) && (dir == 1))){
             switch(map[player.y + dir][player.x]){
@@ -253,6 +262,7 @@ int main()
         input();
         logic();
     }
+    // function for curses
     endwin();
     return 0; 
 }
