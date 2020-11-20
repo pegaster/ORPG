@@ -1,6 +1,6 @@
 #include <curses.h>
 #include <fstream>
-// constants
+// consts
 #define MAP_HEIGHT 22
 #define MAP_WIDTH 44
 #define LEFT_MAP 2
